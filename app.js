@@ -17,12 +17,12 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.log("Connected!");
-    };
+// connection.connect(function (err) {
+//     if (err) {
+//         console.log("Connected!");
+//     };
 
-});
+// });
 
 app.get('/hw7', function (req, res) {
     var q = url.parse(req.url, true).query;
