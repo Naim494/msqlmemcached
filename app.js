@@ -11,17 +11,10 @@ app.use(bodyParser.json());
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'abstergos2',
+    password: '111',
     database: 'hw7',
     insecureAuth: true,
     multipleStatements: true
-});
-
-connection.connect(function (err) {
-    if (err) {
-        console.log("Connected!");
-    };
-
 });
 
 app.get('/hw7', function (req, res) {
