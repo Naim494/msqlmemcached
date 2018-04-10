@@ -30,30 +30,31 @@ app.get('/hw7', function (req, res) {
     console.log("POS: " + q.pos);
 
     con.query(
-        'SELECT player, club, pos, gp, a FROM assists ' +
-        'WHERE club="' + q.club + '" AND pos="' + q.pos +
-        '" ORDER BY a DESC, gs DESC LIMIT 1;' +
+        'SELECT player, club, pos, gs, a FROM assists WHERE club="' + q.club +
+        '" AND pos="' + q.pos + '" ORDER BY a DESC, gs DESC, player LIMIT 1;' +
 
-        'SELECT AVG(a) as avg FROM (SELECT player, club, pos, a FROM assists ' +
-        'WHERE club="' + q.club + '" AND pos="' + q.pos + '") TMP'
+        'SELECT AVG(a) as avg FROM (SELECT player, club, pos, a FROM assists WHERE club="' + q.club +
+        '" AND pos="' + q.pos + '") TMP'
         , [1, 2],
 
         function (err, result, fields) {
             if (err) throw err;
-            console.log(result[0]);
-            console.log(result[1]);
+            else
+            {
 
-            switch (result[0][0].player) {
-                
-                default:
-                    res.status(200).json({
-                        club: q.club,
-                        pos: q.pos,
-                        max_assists: result[0][0].a,
-                        player: result[0][0].player,
-                        avg_assists: result[1][0].avg
-                    });
+              console.log(result[0]);
+              console.log(result[1]);
+
+              res.status(200).json({
+                  club: q.club,
+                  pos: q.pos,
+                  max_assists: result[0][0].a,
+                  player: result[0][0].player,
+                  avg_assists: result[1][0].avg
+              });
             }
+
+
         });
 })
 
