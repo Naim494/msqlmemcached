@@ -30,7 +30,7 @@ app.get('/hw7', function (req, res) {
     console.log("CLUB: " + q.club);
     console.log("POS: " + q.pos);
 
-    con.query(
+    connection.query(
         'SELECT player, club, pos, gs, a FROM assists WHERE club="' + q.club +
         '" AND pos="' + q.pos + '" ORDER BY a DESC, gs DESC, player LIMIT 1;' +
 
