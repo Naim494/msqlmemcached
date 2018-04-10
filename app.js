@@ -9,20 +9,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var connection = mysql.createConnection({
-    host: 'localhost:3306',
+    host: 'localhost',
     user: 'root',
-    password: 'Abstergos2!',
+    password: 'abstergos2',
     database: 'hw7',
     insecureAuth: true,
     multipleStatements: true
 });
 
-// connection.connect(function (err) {
-//     if (err) {
-//         console.log("Connected!");
-//     };
+connection.connect(function (err) {
+    if (err) {
+        console.log("Connected!");
+    };
 
-// });
+});
 
 app.get('/hw7', function (req, res) {
     var q = url.parse(req.url, true).query;
