@@ -17,6 +17,8 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
+connection.connect();
+
 app.get('/hw7', function (req, res) {
     var q = url.parse(req.url, true).query;
     console.log("URL: " + req.url);
